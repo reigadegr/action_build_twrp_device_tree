@@ -31,7 +31,9 @@ jobs:
       
     - name: Start build
       run: |
-        python3 -m twrpdtgen -o dt/ -d *.img
+        for img in $(realpath *.img); do
+          python3 -m twrpdtgen -o dt/ -d "$img"
+        done
     - name: ZIP device tree
       run: |
         zip -r DeviceTree.zip ./dt
